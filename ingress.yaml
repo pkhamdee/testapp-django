@@ -1,0 +1,18 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: django-ing
+spec:
+  virtualhost:
+    fqdn: testapp.com
+  routes:
+    - conditions:
+      - prefix: /page
+      services:
+        - name: page-svc
+          port: 8000
+    - conditions:      
+      - prefix: /home
+      services:
+        - name: home-svc
+          port: 8000
